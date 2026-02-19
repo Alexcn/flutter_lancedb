@@ -35,3 +35,6 @@ migrate_working_dir/
 # Rust/Cargo related (for flutter plugin native library)
 /target/
 /rust/Cargo.lock
+/doc/
+.vscode/
+.github/copilot-instructions.md
