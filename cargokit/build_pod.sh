@@ -25,14 +25,19 @@ export CARGOKIT_CONFIGURATION=$CONFIGURATION
 # Path to directory containing Cargo.toml.
 export CARGOKIT_MANIFEST_DIR=$PODS_TARGET_SRCROOT/$1
 
+# Use a stable temp directory under Flutter build output so Cargo incremental
+# artifacts persist across runs. TARGET_TEMP_DIR is an Xcode intermediate
+# directory and can be recreated frequently.
+STABLE_CARGOKIT_DIR=$SRCROOT/../build/cargokit/$PRODUCT_NAME
+
 # Temporary directory for build artifacts.
-export CARGOKIT_TARGET_TEMP_DIR=$TARGET_TEMP_DIR
+export CARGOKIT_TARGET_TEMP_DIR=$STABLE_CARGOKIT_DIR
 
 # Output directory for final artifacts.
 export CARGOKIT_OUTPUT_DIR=$PODS_CONFIGURATION_BUILD_DIR/$PRODUCT_NAME
 
 # Directory to store built tool artifacts.
-export CARGOKIT_TOOL_TEMP_DIR=$TARGET_TEMP_DIR/build_tool
+export CARGOKIT_TOOL_TEMP_DIR=$STABLE_CARGOKIT_DIR/build_tool
 
 # Directory inside root project. Not necessarily the top level directory of root project.
 export CARGOKIT_ROOT_PROJECT_DIR=$SRCROOT
